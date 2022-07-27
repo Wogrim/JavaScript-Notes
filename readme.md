@@ -92,3 +92,12 @@ for(name in scores)
     console.log(`${name} scored ${scores[name]} points.`);
 ```
 
+if you want to use the object like a set, only the keys are important:
+```
+function withoutDuplicates(arr)
+{
+    var dict = {};
+    for(var i = 0; i < arr.length; i++)
+        dict[arr[i]]=1;
+    return Object.keys(dict);
+}
