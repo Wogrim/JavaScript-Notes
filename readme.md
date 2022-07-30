@@ -11,9 +11,9 @@
 # Data Types and Variables
 
 variables can be declared as
-- **var**
+- **var** (gets *hoisted* so it can actually be used before where it is declared)
 - **let**
-- **const**
+- **const** (can't be changed)
 
 ## numbers
 
@@ -99,5 +99,88 @@ function withoutDuplicates(arr)
     var dict = {};
     for(var i = 0; i < arr.length; i++)
         dict[arr[i]]=1;
-    return Object.keys(dict);
+    return Object.keys(dict); //array of the keys
 }
+```
+
+put methods in your object (and reference the object's other stuff through **this**)
+```
+butler = {
+    name: "Mike",
+    introduce: function() {
+        console.log(`My name is ${this.name}, Sir.`)
+    },
+    greet() {
+        console.log("Hello, Sir.");
+    }
+}
+```
+
+# logic control and such
+
+## conditions and if statements
+
+C-style syntax; use { } for multiple statements
+```
+if (score > 20)
+    do_something();
+else if (score > 10)
+    do_something_else();
+else
+    do_nothing();
+```
+
+keep in mind that conditions can give confusing bugs if they evaluate to things like *undefined* (which is false)
+
+## loops
+
+C-style syntax **for** and **while** loops, *break* and *continue* available
+```
+//print numbers from 1 to 100 except multiples of 5
+for(var i = 1; i <= 100; i++)
+{
+    if(i%5==0)
+        continue;
+    console.log(i);
+}
+```
+```
+//find the biggest power of 2 less than 93428751239
+var x = 1;
+while(x * 2 < 93428751239>)
+{
+    x *= 2;
+}
+console.log(x);
+```
+
+## functions
+
+functions can be declared in a simple way, with or without parameters, return optional
+```
+function do_something(x,y,z)
+{
+    console.log(`"${x} ${y} ${z}");
+    return x * y * z;
+}
+```
+
+you can do the same thing with an arrow function
+```
+const do_something = (x,y,z) => {
+    console.log(`"${x} ${y} ${z}");
+    return x * y * z;
+}
+```
+
+an arrow function with only a return statement can be written as
+```
+const do_something_else = (x,y,z) => x * y * z;
+```
+
+the common use for an arrow function is when a function is an argument, and you want to make a short one  
+example: arr.map(func) returns an array of that function applied to each element in the array  
+note no parentheses needed for single parameter arrow functions
+```
+console.log(names.map(name => "Ninja " + name));
+```
