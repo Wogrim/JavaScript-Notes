@@ -1,4 +1,4 @@
-# Funky Features
+# Important
 
 - dynamically typed variables
 - some things will return things like NaN, undefined, or null instead of causing an error that stops the code
@@ -116,6 +116,23 @@ butler = {
 }
 ```
 
+## classes... sort of
+
+capitalize class name, **constructor** is a special method name
+```
+class Node {
+    constructor(val) {
+        this.value = val;
+        this.next = null;
+    }
+}
+```
+
+create an instance of the class using the constructor
+```
+var bob = new Node(5);
+```
+
 # logic control and such
 
 ## conditions and if statements
@@ -145,9 +162,9 @@ for(var i = 1; i <= 100; i++)
 }
 ```
 ```
-//find the biggest power of 2 less than 93428751239
+//find the biggest power of 2 less than 9342875
 var x = 1;
-while(x * 2 < 93428751239>)
+while(x * 2 < 9342875)
 {
     x *= 2;
 }
