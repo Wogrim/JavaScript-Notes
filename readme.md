@@ -37,7 +37,7 @@ var empty_arr = [];
 var array_with_stuff = [25,20,0,"bacon"];
 ```
 
-length of array / iterate through array
+length of array / iterate through array (there are other methods)
 ```
 for(var i=0; i<array_with_stuff.length; i++)
     console.log(array_with_stuff[i]);
@@ -62,6 +62,11 @@ const [ , secondElement, , , fifthElement] = arr;
 (ES6) rest operator (...) when destructuring to get the remainder of the array copied into a new array (like a slice)
 ```
 const [firstElement, ...remainingElements] = arr;
+```
+
+make a copy of the array with additional stuff
+```
+const arrPlus = [...arr, 27, 28];
 ```
 
 ## strings
@@ -181,6 +186,11 @@ const {name, email, ...extra} = person;
 const {...personCopy} = person;
 const personCopy2 = {...person};
 ```
+ 
+copy and add/overwrite keys/values
+```
+const personCopy3 = {...person, age: 50};
+```
 
 ## classes... sort of
 
@@ -237,6 +247,13 @@ while(x * 2 < 9342875)
 console.log(x);
 ```
 
+*for of* method of traversing through an iterable
+```
+for(const element of arr) {
+    console.log(element);
+}
+```
+
 ## functions
 
 functions can be declared in a simple way, with or without parameters, return optional, will be hoisted
@@ -256,6 +273,13 @@ const do_something = function(x,y,z) {
 }
 ```
 
+anonymous function as parameter to arr.forEach() (which maps a function to each element)
+```
+arr.forEach(function(element){
+    console.log(element);
+});
+```
+
 you can do the same thing with an arrow function (although the *this* inside is different)
 ```
 const do_something = (x,y,z) => {
@@ -267,6 +291,11 @@ const do_something = (x,y,z) => {
 an arrow function with only a return statement can be written as
 ```
 const do_something_else = (x,y,z) => x * y * z;
+```
+
+to return a new object, must put parentheses around it or else sytnax will think it is a block
+```
+const objectify = (name,age) => ({name: name, age: age});
 ```
 
 the common use for an arrow function is when a function is an argument, and you want to make a short one  
