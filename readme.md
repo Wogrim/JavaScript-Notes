@@ -7,13 +7,18 @@
 - === and !== to do proper comparisons to avoid this problem
 - statments are ended with a semicolon, but they are sort of not required (safer to put them for clarity)
   - if you don't have a semicolon at the end of a line, the interpreter will try to put one there if it makes valid syntax
+- ECMAScript (ES) is the standard of JS, each new version (ES5, ES6) adds more features
 
 # Data Types and Variables
 
 variables can be declared as
-- **var** (gets *hoisted* so it can actually be used before where it is declared)
-- **let**
-- **const** (can't be changed)
+- **var** (gets *hoisted* so it can actually be used before where it is declared
+  - if initialized with the declaration the assignment portion stays in place
+  - var is function scoped; if you declare it in a loop it is accessible outside the loop also
+  - generally, never use var
+- **let** is "new" (ES6) block scoped, not hoisted
+- **const** is also "new" (ES6) block scoped, not hoisted, can't be changed
+  - but while a const array or object can't be reassigned, you can change the contents
 
 ## numbers
 
@@ -37,6 +42,15 @@ length of array / iterate through array
 for(var i=0; i<array_with_stuff.length; i++)
     console.log(array_with_stuff[i]);
 ```
+
+(ES6) destructure an array to get values out in named variables (commas to skip values)
+```
+var secondElement = arr[1];
+var fifthElement = arr[4];
+// becomes
+const [ , secondElement, , , fifthElement] = arr;
+```
+(object destructuring more common)
 
 ## strings
 
@@ -116,6 +130,35 @@ butler = {
 }
 ```
 
+destructure an object (ES6): get values and put them in new variables
+```
+var email = person.email;
+// becomes
+const { email } = person;
+```
+
+can get multiple at once
+```
+var name = person.name;
+var email = person.email;
+// becomes
+const {name, email} = person;
+```
+
+destructure into a different variable name
+```
+var personsEmail = person.email;
+// becomes
+const {email: personsEmail} = person;
+```
+
+nested destructuring lets you get values inside a nested object/array  
+(let's say a response is an object which contains an object called *error* from which we want *status* as *errorStatus*)
+```
+const {error : {status: errorStatus}} = response;
+```
+(can become too difficult to read)
+
 ## classes... sort of
 
 capitalize class name, **constructor** is a special method name
@@ -173,7 +216,7 @@ console.log(x);
 
 ## functions
 
-functions can be declared in a simple way, with or without parameters, return optional
+functions can be declared in a simple way, with or without parameters, return optional, will be hoisted
 ```
 function do_something(x,y,z)
 {
@@ -182,7 +225,15 @@ function do_something(x,y,z)
 }
 ```
 
-you can do the same thing with an arrow function
+another way which won't get hoisted
+```
+const do_something = function(x,y,z) {
+    console.log(`"${x} ${y} ${z}");
+    return x * y * z;
+}
+```
+
+you can do the same thing with an arrow function (although the *this* inside is different)
 ```
 const do_something = (x,y,z) => {
     console.log(`"${x} ${y} ${z}");
