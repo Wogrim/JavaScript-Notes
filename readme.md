@@ -43,6 +43,13 @@ for(var i=0; i<array_with_stuff.length; i++)
     console.log(array_with_stuff[i]);
 ```
 
+copy a portion of array to new array with `arr.slice(start=0, end=arr.length)`  
+(end is not inclusive, start and end can be negative)
+```
+var arr = [0,1,2,3,4,5,6,7];
+console.log(arr.slice(2,-2)); // [2,3,4,5]
+```
+
 (ES6) destructure an array to get values out in named variables (commas to skip values)
 ```
 var secondElement = arr[1];
@@ -51,6 +58,11 @@ var fifthElement = arr[4];
 const [ , secondElement, , , fifthElement] = arr;
 ```
 (object destructuring more common)
+
+(ES6) rest operator (...) when destructuring to get the remainder of the array copied into a new array (like a slice)
+```
+const [firstElement, ...remainingElements] = arr;
+```
 
 ## strings
 
