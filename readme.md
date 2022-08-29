@@ -171,6 +171,17 @@ const {error : {status: errorStatus}} = response;
 ```
 (can become too difficult to read)
 
+object spread copies (shallow) the rest of the object's key-value pairs to a new object
+```
+const {name, email, ...extra} = person;
+```
+
+2 ways to copy (shallow) the whole original
+```
+const {...personCopy} = person;
+const personCopy2 = {...person};
+```
+
 ## classes... sort of
 
 capitalize class name, **constructor** is a special method name
