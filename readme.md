@@ -225,6 +225,11 @@ else
 
 keep in mind that conditions can give confusing bugs if they evaluate to things like *undefined* (which is false)
 
+ternary operator to have an if statement in an expression
+```
+console.log(`I have 10 ${count!==1? 'mice' : 'mouse'}.`);
+```
+
 ## loops
 
 C-style syntax **for** and **while** loops, *break* and *continue* available
@@ -273,19 +278,21 @@ const do_something = function(x,y,z) {
 }
 ```
 
-anonymous function as parameter to arr.forEach() (which maps a function to each element)
-```
-arr.forEach(function(element){
-    console.log(element);
-});
-```
-
-you can do the same thing with an arrow function (although the *this* inside is different)
+you can do the same thing with an arrow function
+- an arrow function has the advantage of being able to look in the parent scope for **this**
 ```
 const do_something = (x,y,z) => {
     console.log(`"${x} ${y} ${z}");
     return x * y * z;
 }
+```
+
+anonymous function as parameter to arr.forEach() (which maps a function to each element)
+- creates its own context so unable to use **this**
+```
+arr.forEach(function(element){
+    console.log(element);
+});
 ```
 
 an arrow function with only a return statement can be written as
