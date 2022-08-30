@@ -270,6 +270,17 @@ function do_something(x,y,z)
 }
 ```
 
+you can call functions without all arguments and the parameters will be undefined
+- or you can set default values for parameters
+- JavaScript does not have named arguments
+```
+function do_something(x=1,y=1,z=1)
+{
+    console.log(`"${x} ${y} ${z}");
+    return x * y * z;
+}
+```
+
 another way which won't get hoisted
 ```
 const do_something = function(x,y,z) {
