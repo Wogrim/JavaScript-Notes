@@ -195,11 +195,18 @@ const personCopy3 = {...person, age: 50};
 ## classes... sort of
 
 capitalize class name, **constructor** is a special method name
+- methods written as arrow functions show up as part of the object if you console.log() it
 ```
 class Node {
     constructor(val) {
         this.value = val;
         this.next = null;
+    }
+    dosomething() {
+        console.log(`doing something with ${this.value}`);
+    }
+    dosomethingelse = () => {
+        console.log(`doing something else with ${this.value}`);
     }
 }
 ```
@@ -207,6 +214,20 @@ class Node {
 create an instance of the class using the constructor
 ```
 var bob = new Node(5);
+```
+
+inheritance, override method, calling overridden method
+```
+class DLLNode extends Node{
+    constructor(val){
+        super(val); //parent class constructor
+        this.prev = null;
+    }
+    dosomething(){
+        console.log("DLLNode's dosomething() doesn't do much");
+        super.dosomething();
+    }
+}
 ```
 
 # logic control and such
