@@ -192,9 +192,11 @@ copy and add/overwrite keys/values
 const personCopy3 = {...person, age: 50};
 ```
 
-## classes... sort of
+## classes... sort of (ES6)
 
-capitalize class name, **constructor** is a special method name
+- capitalize class name
+- class definitions are not hoisted
+- **constructor** is a special method name (required)
 - methods written as arrow functions show up as part of the object if you console.log() it
 ```
 class Node {
@@ -227,6 +229,14 @@ class DLLNode extends Node{
         console.log("DLLNode's dosomething() doesn't do much");
         super.dosomething();
     }
+}
+```
+
+to make check that a parameter is an instance of a class (parent class will return true)
+```
+function nullify(node) {
+    if(! node instanceof Node)
+        return;
 }
 ```
 
@@ -342,4 +352,24 @@ example: arr.map(func) returns an array of that function applied to each element
 note no parentheses needed for single parameter arrow functions
 ```
 console.log(names.map(name => "Ninja " + name));
+```
+
+## exceptions
+
+typical **try** / **catch** syntax
+- **finally** block (optional) is run before exiting the whole try/catch structure, no matter how it is exited
+```
+try{
+    //do something that might throw an exception
+    if(!(target instanceof Unit)){
+        throw new Error("Unit.attack(target): target is not a Unit");
+    }
+}
+catch (error) {
+    //do something about the exception
+    console.log("ERROR:",error.message);
+}
+finally {
+    //TODO: some kind of clean-up
+}
 ```
