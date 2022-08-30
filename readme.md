@@ -50,6 +50,22 @@ var arr = [0,1,2,3,4,5,6,7];
 console.log(arr.slice(2,-2)); // [2,3,4,5]
 ```
 
+`.map()` a function to each element of an array; creates a new array with modified copies of the original
+```
+// a copy of the array with all the elements increased by 1
+var arr2 = arr.map(element => element + 1);
+// a copy of the array with all the elements increased by their index
+var arr3 = arr.map((element, index) => element + index);
+```
+
+`.filter()` makes a copy of the array but only keeps elements that pass the filter test (return *true* = keep)
+```
+// a copy of the array that removes negative values
+var arr4 = arr.filter(element => return element >= 0);
+// a copy of the array that keeps values that are greater than their index
+var arr5 = arr.filter((element, index) => return element > index);
+```
+
 (ES6) destructure an array to get values out in named variables (commas to skip values)
 ```
 var secondElement = arr[1];
