@@ -19,6 +19,7 @@ variables can be declared as
 - **let** is "new" (ES6) block scoped, not hoisted
 - **const** is also "new" (ES6) block scoped, not hoisted, can't be changed
   - but while a const array or object can't be reassigned, you can change the contents
+    - use `Object.freeze(arr);` to make it properly immutable
 
 ## numbers
 
@@ -64,6 +65,18 @@ var arr3 = arr.map((element, index) => element + index);
 var arr4 = arr.filter(element => return element >= 0);
 // a copy of the array that keeps values that are greater than their index
 var arr5 = arr.filter((element, index) => return element > index);
+```
+
+`.concat()` mashes two arrays together (in a new array)
+```
+var arr6 = arr4.concat(arr5);
+```
+
+`.sort()` sorts array values as strings by default, or give it a function
+- function should be positive if a > b, zero if a === b, negative if a < b
+```
+//sort an array of strings by their second letter
+console.log(arr.sort((a,b) => a[1].localeCompare(b[1])));
 ```
 
 (ES6) destructure an array to get values out in named variables (commas to skip values)
