@@ -8,6 +8,9 @@
 - statments are ended with a semicolon, but they are sort of not required (safer to put them for clarity)
   - if you don't have a semicolon at the end of a line, the interpreter will try to put one there if it makes valid syntax
 - ECMAScript (ES) is the standard of JS, each new version (ES5, ES6) adds more features
+- you can assign functions to variables, pass functions as arguments, return functions from functions, etc
+- arrow functions are a popular syntax for defining functions, technically a little different from other ways to make a function
+- JS is single-threaded non-blocking; some things are asynchronous
 
 # Data Types and Variables
 
@@ -401,4 +404,51 @@ catch (error) {
 finally {
     //TODO: some kind of clean-up
 }
+```
+
+## Promises and fetch from API
+
+a Promise is an object that keeps track of the status of a (typically) asynchronous action
+- **pending** is when the action is in progress
+- **resolved** is when the action is successful
+- **rejected** is when the action fails
+
+you can manually make a Promise, and resolve/reject it as appropriate
+```
+const tenSeconds = new Promise((resolve, reject) => {
+    setTimeout(()=>{
+        resolve("ten seconds are up!")
+    }, 10000
+    );
+});
+
+//.then or .catch will happen with the promise is resolved or rejected 
+//(in this case resolved after 10 seconds)
+tenSeconds
+    .then(res => console.log(res))
+    .catch(err => console.log(err));
+
+//this will happen right away, before the promise is resolved; the promise is pending
+console.log(tenSeconds);
+```
+
+but the typical situation is you are trying to fetch data from an API
+- **fetch** returns a promise; if we get data the first **.then()** function is run
+  - response.json() is also a promise, which converts the server response to JSON
+    - after that happens we do what we want with the data
+  - if either promise fails (fetch or .json), **.catch** happens
+```
+//get the first 101 pokemon from the API
+fetch("https://pokeapi.co/api/v2/pokemon?limit=101")
+    .then(response => response.json())
+    .then(response => {
+        //for this API, response is an object
+        //response.results is an array of pokemon objects
+        //we will just put the names of the pokemon in our own array
+        allPokemon = (response.results.map(p => p.name));
+    })
+    .catch(err => {
+        console.log(err);
+        allPokemon = [];
+    })
 ```
