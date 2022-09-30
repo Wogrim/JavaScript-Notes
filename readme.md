@@ -127,7 +127,7 @@ for(var i=0; i<name.length; i++)
 
 ## objects
 
-objects largely work like a dictionary
+objects largely work as a hashmap (Python dictionary / C++ unordered_map)
 
 declaring an object with some initial *attributes*
 ```
@@ -145,7 +145,7 @@ if(scores['Thomas'] === undefined)
 ```
 OR
 ```
-if(!'Thomas' in scores)
+if(!('Thomas' in scores))
     console.log("We don't have Thomas's score yet");
 ```
 
@@ -444,11 +444,12 @@ fetch("https://pokeapi.co/api/v2/pokemon?limit=101")
     .then(response => {
         //for this API, response is an object
         //response.results is an array of pokemon objects
+        //for another API, check its documentation or console.log the response
         //we will just put the names of the pokemon in our own array
         allPokemon = (response.results.map(p => p.name));
     })
     .catch(err => {
         console.log(err);
         allPokemon = [];
-    })
+    });
 ```
